@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Website Pribadi — Rayyan Muhammad Arraffi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background-deco" aria-hidden="true">
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="circle c3"></div>
+    <div class="wave-container"><div class="wave wave1"></div><div class="wave wave2"></div></div>
+  </div>
+
+  <header class="navbar" role="banner">
+    <div class="brand" aria-hidden="false">
+      <img src="tugas/logo.png" class="logo-img" alt="Logo">
+      <div>
+        <div class="title">Rayyan Muhammad Arraffi</div>
+        <div class="sub">Teknik Informatika — Universitas Pamulang</div>
+      </div>
+    </div>
+
+    <div class="menu-wrap" aria-haspopup="true">
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuList">
+        ☰ Menu
+      </button>
+
+      <nav id="menuList" class="dropdown" role="menu" aria-label="Primary menu">
+        <a href="#" data-target="home" role="menuitem">Home</a>
+        <a href="#" data-target="profil" role="menuitem">Profil</a>
+        <a href="#" data-target="gallery" role="menuitem">Gallery</a>
+        <a href="#" data-target="latihan" role="menuitem">Latihan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="card content" aria-live="polite">
+      <section id="home" class="active" aria-labelledby="homeTitle">
+        <div class="home-hero">
+          <h1 id="homeTitle">
+            Rayyan Muhammad Arraffi
+          </h1>
+        </div>
+      </section>
+
+      <section id="profil" aria-labelledby="profilTitle">
+        <h2 id="profilTitle">Profil</h2>
+
+        <div class="profile">
+          <div class="profile-card" role="region" aria-label="Kartu Profil">
+
+            <div class="profile-photo-wrap" aria-hidden="false">
+              <img src="tugas/foto.jpg" alt="Foto Profil Rayyan" class="profile-photo">
+            </div>
+
+            <div class="profile-panels" role="region" aria-label="Detail Profil">
+
+              <div class="panel" aria-labelledby="identitasTitle">
+                <h3 id="identitasTitle">Identitas</h3>
+
+                <div class="row">
+                  <div class="label">Nama Lengkap</div>
+                  <div class="value">Rayyan Muhammad Arraffi</div>
+                </div>
+
+                <div class="row">
+                  <div class="label">NIM</div>
+                  <div class="value">231011402559</div>
+                </div>
+
+                <div class="row">
+                  <div class="label">Jenis Kelamin</div>
+                  <div class="value">Laki-laki</div>
+                </div>
+
+                <div class="row">
+                  <div class="label">Tanggal Lahir</div>
+                  <div class="value">22 Januari 2005</div>
+                </div>
+
+                <div class="row">
+                  <div class="label">Program Studi</div>
+                  <div class="value">Teknik Informatika S1</div>
+                </div>
+
+                <div class="row">
+                  <div class="label">Kelas</div>
+                  <div class="value">05TPLM004</div>
+                </div>
+
+              </div>
+
+              <div class="panel" aria-labelledby="kontakTitle">
+                <h3 id="kontakTitle">Kontak</h3>
+
+                <div class="row">
+                  <div class="label">Email</div>
+                  <div class="value">arrafirayyan@gmail.com</div>
+                </div>
+
+                <div class="row">
+                  <div class="label">Handphone</div>
+                  <div class="value">08998370737</div>
+                </div>
+
+                <div class="row" style="align-items:center;">
+                  <div class="label">Status Mahasiswa</div>
+                  <div class="value">Aktif</div>
+                </div>
+
+                <div class="row" style="margin-top:6px;">
+                  <div class="label">Program Perkuliahan</div>
+                  <div class="value">Reguler B</div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <section id="gallery" aria-labelledby="galleryTitle">
+        <h2 id="galleryTitle">Gallery</h2>
+        <p class="muted" style="margin-top:6px">Beberapa screenshot atau mockup proyek.</p>
+        <div class="gallery">
+          <img src="tugas/home.png" alt="Pertemuan 1">
+          <img src="tugas/profile.png" alt="Pertemuan 2">
+          <img src="tugas/latihan.png" alt="Pertemuan 3">
+        </div>
+      </section>
+
+      <section id="latihan" aria-labelledby="latihanTitle">
+        <h2 id="latihanTitle">Daftar Tugas</h2>
+        <p class="muted" style="margin-top:8px">
+          Kumpulan Tugas Rayyan Muhammad Arraffi
+        </p>
+
+        <ul class="latihan-list">
+          <li><a class="hidden-link" href="tugas/Pertemuan 1.pdf" target="_blank">Tugas E-Learning Pertemuan 1</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 2.png" target="_blank">Tugas E-Learning Pertemuan 2</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 3.pdf" target="_blank">Tugas E-Learning Pertemuan 3</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 4.pdf" target="_blank">Tugas E-Learning Pertemuan 4</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 5.png" target="_blank">Tugas E-Learning Pertemuan 5</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 6.png" target="_blank">Tugas E-Learning Pertemuan 6</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 7.png" target="_blank">Tugas E-Learning Pertemuan 7</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 8.png" target="_blank">Tugas E-Learning Pertemuan 8</a></li>
+          <li><a class="hidden-link" href="tugas/home.png" target="_blank">Tugas E-Learning Pertemuan 9</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 10.pdf" target="_blank">Tugas E-Learning Pertemuan 10</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 11.pdf" target="_blank">Tugas E-Learning Pertemuan 11</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 12.pdf" target="_blank">Tugas E-Learning Pertemuan 12</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 13.pdf" target="_blank">Tugas E-Learning Pertemuan 13</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 14.png" target="_blank">Tugas E-Learning Pertemuan 14</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 15.png" target="_blank">Tugas E-Learning Pertemuan 15</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 16.png" target="_blank">Tugas E-Learning Pertemuan 16</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 17.png" target="_blank">Tugas E-Learning Pertemuan 17</a></li>
+          <li><a class="hidden-link" href="tugas/Pertemuan 18.pdf" target="_blank">Tugas E-Learning Pertemuan 18</a></li>
+        </ul>
+
+      </section>
+    </section>
+
+    <div class="footer">© 2025 Rayyan Muhammad Arraffi — Universitas Pamulang</div>
+  </main>
+
+  <div id="previewOverlay" class="preview-overlay" role="dialog" aria-hidden="true">
+    <div class="preview-panel" role="document">
+      <div class="preview-header">
+        <div class="preview-title" id="previewTitle">Preview</div>
+        <div class="preview-controls">
+          <button id="prevPage" class="preview-btn">◀</button>
+          <button id="nextPage" class="preview-btn">▶</button>
+          <button id="showAllPages" class="preview-btn">Semua</button>
+          <button id="zoomIn" class="preview-btn">＋</button>
+          <button id="zoomOut" class="preview-btn">－</button>
+          <button id="closePreview" class="preview-btn">✕</button>
+        </div>
+      </div>
+
+      <div class="preview-body" id="previewBody">
+        <img id="previewImage" class="preview-img" style="display:none">
+        <div id="pdfWrap" class="pdf-canvas-wrap" style="display:none;width:100%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js';
+  </script>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
