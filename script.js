@@ -254,17 +254,45 @@ sections.forEach(s => s.id === 'home' ? s.classList.add('active') : s.classList.
     const metaRow = document.createElement('div');
     metaRow.className = 'meta-row';
 
+    // ============ DOWNLOAD CUSTOM PER ITEM (pakai data-download kalau ada) ============
     const downloadBtn = document.createElement('a');
     downloadBtn.className = 'btn-small';
-    downloadBtn.href = href;
-    downloadBtn.setAttribute('download', filename);
-    downloadBtn.textContent = 'Download';
-    metaRow.appendChild(downloadBtn);
 
+    // jika author menambahkan data-download (custom path), pakai itu
+    const customDownload = a.getAttribute('data-download') || a.getAttribute('data-download-href') || '';
+    let finalHref = '';
+
+    if(customDownload && customDownload.trim() !== '') {
+      finalHref = customDownload.trim();
+    } else {
+      // fallback: ambil nomor pertemuan dari nama file asli dan pakai codingan/pertemuanN.html
+      const num = filename.match(/\d+/);
+      const pertemuan = num ? num[0] : '1';
+      finalHref = `codingan/pertemuan${pertemuan}.html`;
+    }
+
+    downloadBtn.href = finalHref;
+    // atur nama file download berdasarkan basename finalHref
+    const resolvedName = (finalHref.split('/').pop() || (`pertemuan` + (filename.match(/\d+/)? filename.match(/\d+/)[0] : '1')));
+    downloadBtn.setAttribute('download', resolvedName);
+    downloadBtn.textContent = 'Download';
+
+    // simpan metadata kecil
+    downloadBtn.dataset.original = href;
+    downloadBtn.dataset.resolved = finalHref;
+
+    metaRow.appendChild(downloadBtn);
+    // ================================================================================
+
+    // tampilkan NAMA FILE YANG AKAN DI-DOWNLOAD (bukan selalu nama file preview)
     const nameSpan = document.createElement('span');
     nameSpan.className = 'muted';
     nameSpan.style.fontSize = '13px';
-    nameSpan.textContent = filename;
+
+    // jika ada customDownload gunakan basename customDownload, kalau tidak gunakan resolvedName
+    const displayName = (customDownload && customDownload.trim() !== '') ? (customDownload.trim().split('/').pop()) : resolvedName;
+    nameSpan.textContent = displayName;
+
     metaRow.appendChild(nameSpan);
 
     meta.appendChild(metaRow);
