@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Programming WEB dengan HTML</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      margin: 20px 30px;
+      color: #000;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 6px 0;
+      font-weight: bold;
+    }
+    .sub {
+      color: #000080;
+      margin: 0 0 10px 0;
+    }
+    .rule-blue {
+      height: 4px;
+      background: #0b3bd6;
+      margin: 8px 0 14px 0;
+      border-radius: 2px;
+    }
+    nav {
+      margin: 6px 0 12px 0;
+      font-size: 14px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #000;
+      padding: 0 10px;
+    }
+    /* gunakan pseudo-element untuk menampilkan garis pemisah '|' seperti di gambar */
+    nav a + a::before {
+      content: "|";
+      padding: 0 8px;
+      color: #000;
+    }
+    .rule-blue-thin {
+      height: 3px;
+      background: #0b3bd6;
+      margin: 14px 0;
+      border-radius: 2px;
+    }
+    .content {
+      font-size: 14px;
+      line-height: 1.6;
+      width: 85%;
+    }
+    .line-gray {
+      height: 2px;
+      background: #bfbfbf;
+      margin: 18px 0;
+    }
+    .footer {
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Programming WEB dengan HTML</h1>
+  <div class="sub">Teknologi Informatika</div>
+  <div class="rule-blue"></div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Profil</a>
+    <a href="#">About</a>
+    <a href="#">Gallery</a>
+    <a href="#">Kontak</a>
+  </nav>
+
+  <div class="rule-blue-thin"></div>
+
+  <div class="content">
+    <p>Terimakasih anda telah bergabung dan berkunjung pada situs kami, kami berharap anda memperoleh informasi yang anda inginkan dan anda cari.</p>
+
+    <p>Situs ini berisi informasi sekitar materi yang berhubungan dengan programming web, diantaranya : HTML, CSS, PHP, MySql dan materi atau artikel lain sekitar web.</p>
+  </div>
+
+  <div class="line-gray"></div>
+
+  <div class="footer">Admin Web, Me</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Kalkulator Sederhana</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .judul {
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+  }
+
+  .container {
+    margin-top: 40px;
+  }
+
+  input, select {
+    padding: 6px;
+    font-size: 16px;
+  }
+
+  .btn {
+    padding: 6px 14px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .footer {
+    margin-top: 40px;
+    color: blue;
+    font-size: 14px;
+  }
+</style>
+
+</head>
+<body>
+
+  <div class="judul">Kalkulator Sederhana</div>
+  <h2>Selamat Mencoba</h2>
+
+  <div class="container">
+    <b style="margin-right:80px;">Nilai I</b>
+    <b>Nilai II</b><br><br>
+
+    <input type="number" id="nilai1">
+
+    <select id="operator">
+      <option value="+"> + </option>
+      <option value="-"> - </option>
+      <option value="*"> * </option>
+      <option value="/"> / </option>
+      <option value="^"> ^ (pangkat) </option>
+    </select>
+
+    <input type="number" id="nilai2">
+
+    <button class="btn" onclick="hitung()">submit</button>
+
+    <div id="hasil" style="margin-top:20px; font-size:20px; font-weight:bold;"></div>
+  </div>
+
+  <div class="footer">
+    Created by Endar Nirmala, endar_nirmala@yahoo.com
+  </div>
+
+<script>
+  function hitung() {
+    let a = parseFloat(document.getElementById("nilai1").value);
+    let b = parseFloat(document.getElementById("nilai2").value);
+    let op = document.getElementById("operator").value;
+    let hasil = 0;
+
+    if (op === "+") hasil = a + b;
+    else if (op === "-") hasil = a - b;
+    else if (op === "*") hasil = a * b;
+    else if (op === "/") hasil = a / b;
+    else if (op === "^") hasil = Math.pow(a, b);
+
+    document.getElementById("hasil").innerHTML = "Hasil: " + hasil;
+  }
+</script>
+
+</body>
+</html>

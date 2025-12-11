@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Deret Bilangan Genap yang Habis Dibagi 3</title>
+<style>
+  body{font-family: Arial, sans-serif; background:#f6f8fb; color:#111; padding:24px;}
+  .card{max-width:760px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+  h1{color:#0b7bd1;margin-top:0;}
+  .output{background:#f0f6ff;padding:12px;border-radius:6px;border:1px solid #e6eef9;margin-top:12px;}
+  .muted{color:#555;font-size:14px;}
+  .btn{margin-top:12px;padding:8px 12px;border-radius:6px;border:none;background:#0b7bd1;color:#fff;cursor:pointer;}
+  pre{white-space:pre-wrap;word-break:break-word;}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Deret Bilangan Genap yg Habis Dibagi 3</h1>
+    <p class="muted">Program akan meminta nilai awal dan akhir lewat <code>prompt()</code>, lalu menampilkan deret, jumlah bilangan, dan jumlah nilainya.</p>
+
+    <button id="runBtn" class="btn">Jalankan Program (Input via prompt)</button>
+
+    <div id="result" class="output" style="display:none;"></div>
+  </div>
+
+<script>
+function runProgram() {
+  let rawStart = prompt("Masukkan Nilai Awal (bilangan bulat):");
+  if (rawStart === null) return; 
+  let rawEnd = prompt("Masukkan Nilai Akhir (bilangan bulat):");
+  if (rawEnd === null) return; 
+
+  // konversi ke integer
+  let start = parseInt(rawStart, 10);
+  let end = parseInt(rawEnd, 10);
+
+  if (isNaN(start) || isNaN(end)) {
+    alert("Input tidak valid. Pastikan memasukkan bilangan bulat.");
+    return;
+  }
+
+  // jika start > end, tukar agar mudah
+  if (start > end) {
+    const tmp = start; start = end; end = tmp;
+  }
+
+  // kumpulkan bilangan yang memenuhi: genap dan habis dibagi 3 (=> habis dibagi 6)
+  const deret = [];
+  let jumlahNilai = 0;
+  for (let n = start; n <= end; n++) {
+    if (n % 2 === 0 && n % 3 === 0) { // genap dan habis dibagi 3
+      deret.push(n);
+      jumlahNilai += n;
+    }
+  }
+
+  // siapkan output sesuai format soal
+  const resultEl = document.getElementById("result");
+  let html = "";
+  html += "<strong>Nilai Awal :</strong> " + start + "<br/>";
+  html += "<strong>Nilai Akhir :</strong> " + end + "<br/><br/>";
+  if (deret.length === 0) {
+    html += "<strong>Deret yang tampil :</strong> (tidak ada bilangan yang memenuhi kriteria dalam rentang ini)<br/><br/>";
+  } else {
+    html += "<strong>Deret yang tampil :</strong> " + deret.join("  ") + "<br/><br/>";
+  }
+  html += "<strong>Jumlah deret bilangan :</strong> " + deret.length + " bilangan<br/>";
+  html += "<strong>Jumlah nilai bilangan tersebut :</strong> " + jumlahNilai + "<br/>";
+
+  resultEl.innerHTML = html;
+  resultEl.style.display = "block";
+}
+
+// tombol untuk jalankan
+document.getElementById("runBtn").addEventListener("click", runProgram);
+
+// juga jalankan otomatis saat halaman dibuka (opsional) — hapus baris berikut jika tidak ingin auto prompt
+// window.addEventListener('load', runProgram);
+</script>
+</body>
+</html>

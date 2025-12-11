@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Menghitung Luas Trapesium</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 24px; background:#f6f8fb; color:#111; }
+    .card { background:#fff; padding:18px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.06); max-width:640px; }
+    h1 { color:#0b7bd1; }
+    pre { background:#f0f6ff; padding:12px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Menghitung Luas Trapesium</h1>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const garisAtas = 8;   
+    const garisBawah = 12;  
+    const tinggi = 5;       
+
+    const luas = ((garisAtas + garisBawah) / 2) * tinggi;
+
+    const outputText = `
+      <strong>Diketahui :</strong><br/>
+      Garis Atas : ${garisAtas} Cm<br/>
+      Garis Bawah : ${garisBawah} Cm<br/>
+      Tinggi : ${tinggi} Cm<br/><br/>
+
+      Maka :<br/>
+      Luas : ${((garisAtas + garisBawah) / 2)} x ${tinggi} = <b>${luas}</b> Cm<sup>2</sup>
+    `;
+
+    // Tampilkan ke elemen #output
+    document.getElementById('output').innerHTML = outputText;
+  </script>
+</body>
+</html>

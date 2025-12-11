@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tugas - Dialog Box (Alert, Prompt, Confirm, Form)</title>
+  <style>
+    body{font-family:Arial, sans-serif;background:#f4f7fb;color:#111;padding:20px}
+    .card{max-width:800px;margin:0 auto;background:#fff;padding:18px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+    h1{color:#0b7bd1}
+    label{display:block;margin:8px 0 4px}
+    input[type="text"], input[type="email"], select{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd}
+    .row{display:flex;gap:12px}
+    .row > div{flex:1}
+    .btn{display:inline-block;padding:8px 12px;border-radius:6px;background:#0b7bd1;color:#fff;text-decoration:none;border:none;cursor:pointer}
+    .btn.secondary{background:#6b7280}
+    .output{background:#f0f6ff;padding:12px;border-radius:6px;margin-top:12px;border:1px solid #e6eef9}
+    .small{font-size:13px;color:#555}
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Contoh: Alert, Prompt, Confirm & Form</h1>
+  <p class="small">Halaman ini mendemonstrasikan dialog box JS dan form interaktif.</p>
+
+  <div style="margin-top:12px;">
+    <button id="btnPrompt" class="btn">Minta Nama (Prompt)</button>
+    <button id="btnConfirm" class="btn secondary">Hapus Contoh Data (Confirm)</button>
+  </div>
+
+  <hr style="margin:16px 0">
+
+  <!-- FORM -->
+  <form id="myForm">
+    <label for="nama">Nama lengkap *</label>
+    <input id="nama" name="nama" type="text" placeholder="Masukkan nama">
+
+    <label for="email">Email *</label>
+    <input id="email" name="email" type="email" placeholder="contoh@domain.com">
+
+    <div class="row" style="margin-top:8px;">
+      <div>
+        <label>Jenis Kelamin *</label>
+        <label><input type="radio" name="gender" value="Laki-laki"> Laki-laki</label>
+        <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
+      </div>
+      <div>
+        <label for="umur">Umur *</label>
+        <select id="umur" name="umur">
+          <option value="">Pilih umur</option>
+          <option value="17-20">17-20</option>
+          <option value="21-25">21-25</option>
+          <option value="26+">26+</option>
+        </select>
+      </div>
+    </div>
+
+    <label style="margin-top:8px">Minat</label>
+    <label><input type="checkbox" name="minat" value="Web"> Web</label>
+    <label><input type="checkbox" name="minat" value="Mobile"> Mobile</label>
+    <label><input type="checkbox" name="minat" value="AI"> AI</label>
+
+    <div style="margin-top:12px;">
+      <button type="submit" class="btn">Kirim</button>
+      <button type="button" id="btnReset" class="btn secondary">Reset Form</button>
+    </div>
+  </form>
+
+  <div id="result" class="output" style="display:none"></div>
+</div>
+
+<script>
+  // ALERT saat halaman dimuat
+  window.addEventListener('load', function() {
+    alert("Selamat datang! Halaman ini menampilkan contoh Alert, Prompt, Confirm, dan Form.");
+  });
+
+  // PROMPT: minta nama lewat tombol
+  document.getElementById('btnPrompt').addEventListener('click', function(){
+    const nama = prompt("Masukkan namamu:", "");
+    if (nama === null) {
+      // user cancel
+      alert("Prompt dibatalkan.");
+    } else if (nama.trim() === "") {
+      alert("Kamu menekan OK tapi tidak mengisi nama.");
+    } else {
+      // tampilkan di halaman
+      showResult("Hasil Prompt: Nama yang dimasukkan adalah <b>" + escapeHtml(nama) + "</b>.");
+    }
+  });
+
+  // CONFIRM: konfirmasi hapus data
+  document.getElementById('btnConfirm').addEventListener('click', function(){
+    const ok = confirm("Yakin ingin menghapus data contoh? (aksi ini hanya demo)");
+    if (ok) {
+      showResult("Data contoh telah dihapus. (Demo)");
+    } else {
+      showResult("Aksi batal. Data tidak dihapus.");
+    }
+  });
+
+  // FORM SUBMIT: validasi sederhana, gunakan alert untuk notifikasi kesalahan
+  document.getElementById('myForm').addEventListener('submit', function(e){
+    e.preventDefault(); // cegah reload
+
+    const nama = document.getElementById('nama').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const umur = document.getElementById('umur').value;
+    const genderNode = document.querySelector('input[name="gender"]:checked');
+    const minatNodes = Array.from(document.querySelectorAll('input[name="minat"]:checked'));
+
+    // Validasi
+    if (!nama) { alert("Nama harus diisi!"); return; }
+    if (!email) { alert("Email harus diisi!"); return; }
+    if (!validateEmail(email)) { alert("Format email tidak valid!"); return; }
+    if (!genderNode) { alert("Pilih jenis kelamin!"); return; }
+    if (!umur) { alert("Pilih umur!"); return; }
+
+    // Ambil nilai minat
+    const minat = minatNodes.map(n => n.value).join(", ") || "Tidak ada";
+
+    // Tampilkan ringkasan (bisa juga dikirim ke server)
+    const summary = `
+      <strong>Data terkirim:</strong><br>
+      Nama: ${escapeHtml(nama)}<br>
+      Email: ${escapeHtml(email)}<br>
+      Jenis Kelamin: ${escapeHtml(genderNode.value)}<br>
+      Umur: ${escapeHtml(umur)}<br>
+      Minat: ${escapeHtml(minat)}
+    `;
+    showResult(summary);
+
+    // Contoh penggunaan alert setelah sukses
+    alert("Form berhasil dikirim (demo). Cek ringkasan di bawah.");
+  });
+
+  // Reset form tombol
+  document.getElementById('btnReset').addEventListener('click', function(){
+    if (confirm("Reset semua input di form?")) {
+      document.getElementById('myForm').reset();
+      showResult("Form telah di-reset.");
+    }
+  });
+
+  // helper: tampilkan di #result
+  function showResult(html) {
+    const out = document.getElementById('result');
+    out.innerHTML = html;
+    out.style.display = 'block';
+  }
+
+  // helper: validasi email sederhana
+  function validateEmail(email) {
+    // regex sederhana
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // helper: escape HTML agar aman saat menampilkan input user
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; });
+  }
+</script>
+
+</body>
+</html>

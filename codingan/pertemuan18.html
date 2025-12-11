@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Menu Function & Array</title>
+
+<style>
+  body{font-family:Arial; background:#f4f6ff; padding:20px;}
+  .card{background:#fff; max-width:700px; margin:0 auto; padding:20px;
+        border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.1);}
+  h1{color:#0066ff;}
+  .menu{font-size:18px; margin-bottom:20px;}
+  .output{background:#eef6ff; padding:15px; border-radius:8px; margin-top:15px; 
+          border:1px solid #d8e7ff;}
+  input, select{padding:6px; margin:6px;}
+  .btn{padding:6px 12px; background:#0066ff; color:#fff; border:none; 
+       border-radius:6px; cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Program Function & Array</h1>
+
+  <div class="menu">
+    <p><b>Menu Pilihan :</b></p>
+    [1] Menghitung Kalkulator <br>
+    [2] Menghitung Luas Trapesium <br>
+    [3] Menghitung Deret Bilangan <br><br>
+
+    Pilihan Anda :
+    <input type="number" id="pilihan" min="1" max="3">
+    <button class="btn" onclick="prosesMenu()">OK</button>
+  </div>
+
+  <div id="formArea"></div>
+  <div id="output" class="output" style="display:none"></div>
+</div>
+
+<script>
+// ========================== FUNGSI-FUNGSI ===============================
+
+// 1. FUNGSI KALKULATOR
+function hitungKalkulator(a, b, op) {
+  switch(op){
+    case "+": return a + b;
+    case "-": return a - b;
+    case "*": return a * b;
+    case "/": return a / b;
+    case "^": return Math.pow(a, b);
+    default: return 0;
+  }
+}
+
+// 2. FUNGSI LUAS TRAPESIUM
+function luasTrapesium(a, b, t){
+  return ((a + b)/2) * t;
+}
+
+// 3. FUNGSI DERET (GENAP & HABIS DIBAGI 3)
+function deretBilangan(start, end){
+  let arr = [];
+
+  for(let i = start; i <= end; i++){
+    if(i % 2 === 0 && i % 3 === 0){
+      arr.push(i);
+    }
+  }
+
+  return arr; // Array hasil
+}
+
+// ======================================================================
+
+// PROSES MENU
+function prosesMenu(){
+  let p = document.getElementById("pilihan").value;
+  let formArea = document.getElementById("formArea");
+  let out = document.getElementById("output");
+
+  out.style.display = "none";
+  out.innerHTML = "";
+
+  // MENU 1: KALKULATOR
+  if(p == 1){
+    formArea.innerHTML = `
+      <h3>Kalkulator</h3>
+      Nilai 1: <input id="k1" type="number"><br>
+      Operator:
+      <select id="op">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+        <option>^</option>
+      </select><br>
+      Nilai 2: <input id="k2" type="number"><br>
+      <button class="btn" onclick="doKalkulator()">Hitung</button>
+    `;
+  }
+
+  // MENU 2: LUAS TRAPESIUM
+  else if(p == 2){
+    formArea.innerHTML = `
+      <h3>Luas Trapesium</h3>
+      Garis Atas: <input id="a" type="number"><br>
+      Garis Bawah: <input id="b" type="number"><br>
+      Tinggi: <input id="t" type="number"><br>
+      <button class="btn" onclick="doTrapesium()">Hitung</button>
+    `;
+  }
+
+  // MENU 3: DERET
+  else if(p == 3){
+    formArea.innerHTML = `
+      <h3>Deret Bilangan Genap yg Habis Dibagi 3</h3>
+      Nilai Awal: <input id="d1" type="number"><br>
+      Nilai Akhir: <input id="d2" type="number"><br>
+      <button class="btn" onclick="doDeret()">Tampilkan</button>
+    `;
+  }
+
+  else {
+    formArea.innerHTML = "<p style='color:red'>Pilihan tidak valid!</p>";
+  }
+}
+
+// ======================================================================
+// EVENT FUNCTION UNTUK FORM
+
+// Kalkulator
+function doKalkulator(){
+  let a = parseFloat(document.getElementById("k1").value);
+  let b = parseFloat(document.getElementById("k2").value);
+  let op = document.getElementById("op").value;
+
+  let hasil = hitungKalkulator(a, b, op);
+
+  let out = document.getElementById("output");
+  out.style.display = "block";
+  out.innerHTML = `Hasil: <b>${hasil}</b>`;
+}
+
+// Luas Trapesium
+function doTrapesium(){
+  let a = parseFloat(document.getElementById("a").value);
+  let b = parseFloat(document.getElementById("b").value);
+  let t = parseFloat(document.getElementById("t").value);
+
+  let luas = luasTrapesium(a, b, t);
+
+  let out = document.getElementById("output");
+  out.style.display = "block";
+  out.innerHTML = `Luas Trapesium: <b>${luas}</b>`;
+}
+
+// Deret Bilangan
+function doDeret(){
+  let start = parseFloat(document.getElementById("d1").value);
+  let end = parseFloat(document.getElementById("d2").value);
+
+  let arr = deretBilangan(start, end);
+  let jumlah = arr.length;
+  let total = arr.reduce((a,b)=>a+b, 0);
+
+  let out = document.getElementById("output");
+  out.style.display = "block";
+
+  out.innerHTML = `
+    Deret: ${arr.join(", ")} <br><br>
+    Jumlah Bilangan: <b>${jumlah}</b><br>
+    Total Nilai: <b>${total}</b>
+  `;
+}
+
+</script>
+
+</body>
+</html>
